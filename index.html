@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="angular.min.js"></script>
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <h1>TodoList</h1>
+    <div ng-app="app">
+      <div ng-controller="appCtrl">
+
+        <div ng-repeat="tache in taches" class="tache">
+
+          <span ng-click="fenetre_ajout2($index)">Modifier</span>
+          <p id="{{ $index }}" ng-click="fait($index)">{{ tache.name }}</p>
+          <p> {{ tache.id }}</p>
+
+          <div class="afficher" id="modif_{{ $index }}">
+              <input ng-model="tache.name">
+              <button type="button" ng-click="affiche_modal2 = false" > Annuler </button>
+              <button type="button" ng-click="modifier($index)" > Confirmer </button>
+          </div>
+        </div>
+
+        <hr>
+
+        <button type="button" ng-click="fenetre_ajout()">Ajouter une tâche</button>
+
+        <form name="formulaire">
+
+          <div ng-show="affiche_modal">
+            <input name="nouvelle_tache" type="text" ng-model="nouvelle_tache" placeholder="Faire les courses" required>
+            <span ng-show="formulaire.nouvelle_tache.$dirty && formulaire.nouvelle_tache.$invalid ">il faut remplir le formulaire</span>
+            <input type="button" ng-click="ajouter_tache()" value="Créer">
+            <input type="button" ng-click="fenetre_ajout()" value="Annuler">
+          </div>
+
+
+
+
+        </form>
+
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
